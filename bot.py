@@ -2,10 +2,10 @@
 from twython import Twython, TwythonError
 
 #Setting these as variables will make them easier for future edits
-app_key = "Sl7jNlwP57JgOScxw88qGFqbR"
-app_secret = "zmtcdbvKFolAARI7SL1w8Vpjbs7FY2rjxC22z5OPYZoybN5Ml7"
-oauth_token = "3432929464-NnjoNRB9zt5gjFJhKZlbaDCftSrzuLdYlrIpfqj"
-oauth_token_secret = "2ayX29rHb2UUSiUtUQrGLm5mBk7qfLg9Puy2ehfjqVfp0"
+app_key = ""
+app_secret = ""
+oauth_token = ""
+oauth_token_secret = ""
 
 twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
 
