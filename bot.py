@@ -2,16 +2,15 @@
 from twython import Twython, TwythonError
 
 #Setting these as variables will make them easier for future edits
-app_key = ""
-app_secret = ""
-oauth_token = ""
-oauth_token_secret = ""
+app_key = "Sl7jNlwP57JgOScxw88qGFqbR"
+app_secret = "zmtcdbvKFolAARI7SL1w8Vpjbs7FY2rjxC22z5OPYZoybN5Ml7"
+oauth_token = "3432929464-NnjoNRB9zt5gjFJhKZlbaDCftSrzuLdYlrIpfqj"
+oauth_token_secret = "2ayX29rHb2UUSiUtUQrGLm5mBk7qfLg9Puy2ehfjqVfp0"
 
 twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
 
-naughty_words = ["follows", "RT", "SEX", "followers"]
-good_words = ['"retweet to win"', '"RT to win"', '"RT for chance"', 
-'"retweet for chance"', '"RT to #win"', '"retweet to #win"', '#giveaway', ]
+naughty_words = [" -follows", "RT", "SEX", "followers"]
+good_words = ['"retweet to win"', '"RT to win"', '"RT to #win"', '"retweet to #win"', '#giveaway', ]
 
 filter = " OR ".join(good_words)
 blacklist = " -".join(naughty_words)
@@ -58,8 +57,14 @@ try:
 				#tweet is candidate tweet and is not a quoted tweet
 				twitter.retweet(id = tweet["id_str"])			
 
-				if "follow" or "Follow" or "#follow" or "FOLLOW" in tweet["text"]:
+				if "follow" or "#follow" in tweet["text"].lower():
 					follow(tweet)
+
+				if "notification" in tweet["text"].lower():
+					turnOnNotifications(tweet)
+					
+				if "favorite" or "favourite" in tweet["text"].lower():
+					favorite(tweet)
 							
 		except TwythonError as e:
 			print(e)
